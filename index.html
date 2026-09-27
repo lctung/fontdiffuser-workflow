@@ -245,17 +245,18 @@
         <div class="column">
           <h3 class="title is-4">1. 製作稿紙</h3>
           <p>
-            整理需要手寫的文字內容，產生包含指定字元與 QR Code 的手寫稿紙，
-            再輸出成 PDF 供學生書寫。
+            輸入選擇要手寫的文字內容，產生手寫稿紙，輸出 PDF 書寫
           </p>
           <div class="columns is-mobile">
             <div class="column">
               <strong>Input</strong>
               <p class="workflow-io">稿紙文字內容</p>
+              <img src="./static/images/original_txt.png">
             </div>
             <div class="column">
               <strong>Output</strong>
               <p class="workflow-io">PDF 手寫稿紙</p>
+              <img src="./static/images/qianziwen.png">
             </div>
           </div>
         </div>
@@ -274,17 +275,19 @@
         <div class="column">
           <h3 class="title is-4">2. 稿紙裁切</h3>
           <p>
-            將完成書寫的稿紙進行旋轉校正，依照稿紙中的字元位置切割，
-            取得單字影像作為後續字體生成的資料。
+            將完成書寫的稿紙進行旋轉校正或是轉檔，依照稿紙中的字元位置切割，
+            取得單字影像作為後續字體生成的資料
           </p>
           <div class="columns is-mobile">
             <div class="column">
               <strong>Input</strong>
               <p class="workflow-io">手寫稿紙掃描檔</p>
+              <img src="./static/images/scan_qianziwen.png">
             </div>
             <div class="column">
               <strong>Output</strong>
               <p class="workflow-io">單字 PNG 影像</p>
+              <img src="./static/images/after_crop.png">
             </div>
           </div>
         </div>
@@ -304,16 +307,18 @@
           <h3 class="title is-4">3. FontDiffuser 生成</h3>
           <p>
             將手寫字影像整理成模型所需的資料格式，透過 FontDiffuser
-            進行訓練與生成，補足未實際書寫的字元。
+            進行訓練與生成，補足未實際書寫的字元
           </p>
           <div class="columns is-mobile">
             <div class="column">
               <strong>Input</strong>
               <p class="workflow-io">手寫字資料集</p>
+              <img src="./static/images/dataset.png">
             </div>
             <div class="column">
               <strong>Output</strong>
               <p class="workflow-io">生成字元 PNG</p>
+              <img src="./static/images/output_list.png">
             </div>
           </div>
         </div>
@@ -333,16 +338,18 @@
           <h3 class="title is-4">4. 字形向量化</h3>
           <p>
             將生成的 PNG 字形轉換為 SVG 向量圖形，並進行 SVG
-            格式處理，讓字形能夠進一步進行字體打包。
+            格式處理，讓字形能夠進一步進行字體打包
           </p>
           <div class="columns is-mobile">
             <div class="column">
               <strong>Input</strong>
               <p class="workflow-io">字元 PNG 影像</p>
+              <img src="./static/images/U+8586.png">
             </div>
             <div class="column">
               <strong>Output</strong>
               <p class="workflow-io">SVG 字形</p>
+              <img src="./static/images/U+8586_pico.png">
             </div>
           </div>
         </div>
@@ -362,31 +369,96 @@
           <h3 class="title is-4">5. 字體打包</h3>
           <p>
             將 SVG 字形整理並合併，最後透過 FontForge 設定字體資訊與
-            CP950 字碼頁，輸出可安裝與使用的 TTF 手寫字體。
+            CP950 字碼頁，輸出可安裝與使用的 TTF 手寫字體
           </p>
           <div class="columns is-mobile">
             <div class="column">
               <strong>Input</strong>
               <p class="workflow-io">SVG 字形</p>
+              <img src="./static/images/svg_set.png">
             </div>
             <div class="column">
               <strong>Output</strong>
               <p class="workflow-io">TTF 手寫字體</p>
+              <img src="./static/images/ttf.png">
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="has-text-centered workflow-links">
-      <p>
-        專案程式碼：
-        <a href="https://github.com/lctung/01_generate_paper" target="_blank">製作稿紙</a> ·
-        <a href="https://github.com/lctung/02-1_crop_paper" target="_blank">稿紙裁切</a> ·
-        <a href="https://github.com/lctung/fontdiffuser-finetune" target="_blank">FontDiffuser</a> ·
-        <a href="https://github.com/lctung/02-2_glyph_vector" target="_blank">字形向量化</a> ·
-        <a href="https://github.com/lctung/02-3_font_packager" target="_blank">字體打包</a>
-      </p>
+    <!-- Other Tools -->
+    <div class="columns is-centered has-text-centered other-tools-heading">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">其他工具</h2>
+        <p>
+          這些專案非主要製作流程，提供字元整理、字體分析與模型執行等功能
+        </p>
+      </div>
+    </div>
+
+    <div class="columns is-multiline">
+      <!-- Tool 1 -->
+      <div class="column is-one-third">
+        <div class="box other-tool">
+          <div class="other-tool-icon">
+            <i class="fas fa-language"></i>
+          </div>
+          <h3 class="title is-5">字元資料整理</h3>
+          <p>
+            整理不同字碼範圍的字元資料，從 Noto Sans 取得字元，
+            並依照 Big5、Big5E、全字庫與 Unicode 的編碼對應，
+            建立完整的字元範圍
+          </p>
+          <a href="https://github.com/lctung/char-extractor"
+             target="_blank"
+             class="button is-small is-rounded is-dark is-outlined">
+            <span class="icon"><i class="fab fa-github"></i></span>
+            <span>char-extractor</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Tool 2 -->
+      <div class="column is-one-third">
+        <div class="box other-tool">
+          <div class="other-tool-icon">
+            <i class="fas fa-chart-bar"></i>
+          </div>
+          <h3 class="title is-5">字體相似度比較</h3>
+          <p>
+            將班上所有人的字體進行比較，
+            分析不同學生在相同字元上的字形相似程度，
+            用於觀察不同手寫字體間的差異
+          </p>
+          <a href="https://github.com/lctung/compare-similarity"
+             target="_blank"
+             class="button is-small is-rounded is-dark is-outlined">
+            <span class="icon"><i class="fab fa-github"></i></span>
+            <span>compare-similarity</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Tool 3 -->
+      <div class="column is-one-third">
+        <div class="box other-tool">
+          <div class="other-tool-icon">
+            <i class="fas fa-cloud"></i>
+          </div>
+          <h3 class="title is-5">FontDiffuser Colab</h3>
+          <p>
+            提供在 Google Colab 上執行 FontDiffuser 的版本，
+            方便使用 Colab 環境進行模型訓練與字體生成
+          </p>
+          <a href="https://github.com/lctung/fontdiffuser-finetune-colab"
+             target="_blank"
+             class="button is-small is-rounded is-dark is-outlined">
+            <span class="icon"><i class="fab fa-github"></i></span>
+            <span>fontdiffuser-finetune-colab</span>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -464,8 +536,33 @@
     border-radius: 6px;
   }
 
-  .workflow-links {
-    margin-top: 2rem;
+  .other-tools-heading {
+    margin-top: 3rem;
+  }
+
+  .other-tool {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .other-tool-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1rem;
+    border-radius: 50%;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+  }
+
+  .other-tool p {
+    flex-grow: 1;
+    margin-bottom: 1.25rem;
   }
 
   @media screen and (max-width: 768px) {
